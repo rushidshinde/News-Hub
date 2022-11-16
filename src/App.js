@@ -1,24 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import { Footer } from './components/Footer';
+import Navbar from './components/Navbar';
+import News from './components/News';
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route
+} from "react-router-dom";
 
 function App() {
+  const appName = 'News Hub';
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <>
+        <Router>
+            <Navbar appName={appName}></Navbar>
+            <div className="container">
+                <Routes>
+                    <Route exact path="/" element={
+                        <News></News>
+                    }></Route>
+                </Routes>
+            </div>
+            <Footer appName={appName}></Footer>
+        </Router>
+      </>
   );
 }
 

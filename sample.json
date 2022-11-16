@@ -1,0 +1,122 @@
+[
+  business
+  entertainment
+  general
+  health
+  science
+  sports
+  technology
+  { value : 'business', lable :  'Business' },
+  { value : 'entertainment', lable :  'Entertainment' },
+  { value : 'general', lable :  'General' },
+  { value : 'health', lable :  'Health' },
+  { value : 'science', lable :  'Science' },
+  { value : 'sports', lable :  'Sports' },
+  { value : 'technology', lable :  'Technology' },
+  { value : 'ca', lable :  'Canada' },
+  { value : 'ch', lable :  'Switzerland' },
+  { value : 'cn', lable :  'China' },
+  { value : 'co', lable :  'Colombia' },
+  { value : 'cu', lable :  'Cuba' },
+  { value : 'cz', lable :  'Czechia' },
+  { value : 'de', lable :  'Germany' },
+  { value : 'eg', lable :  'Egypt' },
+  { value : 'fr', lable :  'France' },
+  { value : 'gb', lable :  'United Kingdom' },
+  { value : 'gr', lable :  'Greece' },
+  { value : 'hk', lable :  'Hong Kong' },
+  { value : 'hu', lable :  'Hungary' },
+  { value : 'id', lable :  'Indonesia' },
+  { value : 'ie', lable :  'Ireland' },
+  { value : 'il', lable :  'Israel' },
+  { value : 'in', lable :  'India' },
+  { value : 'it', lable :  'Italy' },
+  { value : 'jp', lable :  'Japan' },
+  { value : 'kr', lable :  'Korea' },
+  { value : 'lt', lable :  'Lithuania' },
+  { value : 'lv', lable :  'Latvia' },
+  { value : 'ma', lable :  'Morocco' },
+  { value : 'mx', lable :  'Mexico' },
+  { value : 'my', lable :  'Malaysia' },
+  { value : 'ng', lable :  'Nigeria' },
+  { value : 'nl', lable :  'Netherlands' },
+  { value : 'no', lable :  'Norway' },
+  { value : 'nz', lable :  'New Zealand' },
+  { value : 'ph', lable :  'Philippines' },
+  { value : 'pl', lable :  'Poland' },
+  { value : 'pt', lable :  'Portugal' },
+  { value : 'ro', lable :  'Romania' },
+  { value : 'rs', lable :  'Serbia' },
+  { value : 'ru', lable :  'Russia' },
+  { value : 'sa', lable :  'Saudi Arabia' },
+  { value : 'se', lable :  'Sweden' },
+  { value : 'sg', lable :  'Singapore' },
+  { value : 'si', lable :  'Slovenia' },
+  { value : 'sk', lable :  'Slovakia' },
+  { value : 'th', lable :  'Thailand' },
+  { value : 'tr', lable :  'Turkey' },
+  { value : 'tw', lable :  'Taiwan' },
+  { value : 'ua', lable :  'Ukraine' },
+  { value : 'us', lable :  'America' },
+  { value : 've', lable :  'Venezuela' },
+  { value : 'za', lable :  'South Africa' }
+]
+
+
+let dateTime = props.publishedAt.split('T');
+
+let date = (dateTime[0]).split('-');
+let time = (dateTime[1]).split(':');
+let dateFormat = {
+DD : '',
+mm : '',
+YYYY : '',
+HH : '',
+MM : '',
+AM_PM : ''
+}
+dateFormat.DD = date[2];
+switch(date[1]){
+case '1': dateFormat.mm = "January";
+break;
+case '2': dateFormat.mm = "February";
+break;
+case '3': dateFormat.mm = "March";
+break;
+case '4': dateFormat.mm = "April";
+break;
+case '5': dateFormat.mm = "May";
+break;
+case '6': dateFormat.mm = "June";
+break;
+case '7': dateFormat.mm = "July";
+break;
+case '8': dateFormat.mm = "August";
+break;
+case '9': dateFormat.mm = "September";
+break;
+case '10': dateFormat.mm = "October";
+break;
+case '11': dateFormat.mm = "November";
+break;
+case '12': dateFormat.mm = "December";
+break;
+default : dateFormat.mm = date[1];
+}
+dateFormat.YYYY = date[0];
+let intHH = parseInt(time[0]);
+if(intHH > 12){
+dateFormat.HH = intHH-12;
+} else if(intHH === 0){
+dateFormat.HH = 12;
+} else {
+dateFormat.HH = intHH;
+}
+if(intHH > 11){
+dateFormat.AM_PM = 'PM';
+} else {
+dateFormat.AM_PM = 'AM';
+}
+dateFormat.MM = time[1];
+
+let publishedDate = `${dateFormat.mm} ${dateFormat.DD}, ${dateFormat.YYYY} | ${dateFormat.HH}:${dateFormat.MM} ${dateFormat.AM_PM} UTC`;
