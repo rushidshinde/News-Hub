@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import {NewsItem} from './NewsItem'
 import {Spinner} from "./Spinner";
+import {Error} from "./Error";
 
-export default function News() {
+export default function News(props) {
     const countryNameArr = [
         { value : 'ae', lable :  'United Arab Emirates' },
         { value : 'ar', lable :  'Argentina' },
@@ -92,22 +93,23 @@ export default function News() {
 
 
     useEffect(() => {
+        scrollToTop();
+        props.setProgressBar(20);
         const fetchData = async () =>{
-            // const apiKey = '105953cc33f84c2faed3010dfeffe6d3'; //fake one
-            const apiKey = '4f458be829db43d685c1db90df17a385';
-            // const apiKey = '105953cc33f84c2faed3010dfeffe6d7';
-
-            const url=`https://newsapi.org/v2/top-headlines?country=${countryName}&category=${newsCategory}&apiKey=${apiKey}&pageSize=${pageSize}&page=${pageNo}`;
-            // const url=`https://newsapi.org/v2/top-headlines?country=in&pageSize=${pageSize}&page=${pageNo}`;
+            const url=`https://newsapi.org/v2/top-headlines?apiKey=${props.apiKey}&country=${countryName}&category=${newsCategory}&pageSize=${pageSize}&page=${pageNo}`;
             let data = await fetch(url)
+            props.setProgressBar(40);
             let parseData = await data.json()
+            props.setProgressBar(60);
             setResponseStatus(parseData.status);
             setArticle(parseData.articles);
+            props.setProgressBar(80);
             setTotalPages(parseInt(Math.ceil((parseData.totalResults / pageSize))));
             responseStatus === 'error' && setErrorCode(parseData.code);
+            props.setProgressBar(100);
         }
         fetchData();
-        scrollToTop();
+
     },[pageNo, countryName, newsCategory, pageSize])
 
     const handlePrevious = async () =>{
@@ -237,12 +239,7 @@ export default function News() {
                     </div>
                 }
                 {responseStatus === 'error' &&
-                    <div className="statusError my-5 py-5">
-                        <div className="text-center">
-                            <h3 className='text-capitalize'>{errorCode}</h3>
-                            <h1>Sorry for inconvenience try after some time..!</h1>
-                        </div>
-                    </div>
+                    <Error errorCode={errorCode}></Error>
                 }
             </div>
         </>
