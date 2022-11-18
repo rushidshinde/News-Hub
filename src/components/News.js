@@ -109,7 +109,7 @@ export default function News(props) {
             props.setProgressBar(100);
         }
         fetchData();
-
+        // eslint-disable-next-line
     },[pageNo, countryName, newsCategory, pageSize])
 
     const handlePrevious = async () =>{
@@ -149,37 +149,39 @@ export default function News(props) {
 
     return (
         <>
-            <div className="container">
+            <div className="container" style={{marginTop : '90px'}}>
                 {responseStatus === 'loading' &&
                     <Spinner></Spinner>
                 }
                 {responseStatus === 'ok' &&
-                    <div className="statusOk">
+                    <div className="statusOk" >
                         <div className="justify-content-end my-2">
-                            <div className="row">
-                                <div className="col-lg-3">
-                                    <label htmlFor="selectCountryName" className="form-label">Country</label>
-                                    <select value={countryName} onChange={onchangeOfCountryName}
-                                            id='selectCountryName'
-                                            className="form-select" aria-label="selectCountryName">
-                                        {countryNameArr.map((option) => (
-                                            <option key={option.value}
-                                                    value={option.value}>{option.lable}</option>
-                                        ))}
-                                    </select>
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-lg-3">
+                                        <label htmlFor="selectCountryName" className="form-label">Country</label>
+                                        <select value={countryName} onChange={onchangeOfCountryName}
+                                                id='selectCountryName'
+                                                className="form-select" aria-label="selectCountryName">
+                                            {countryNameArr.map((option) => (
+                                                <option key={option.value}
+                                                        value={option.value}>{option.lable}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <label htmlFor="selectNewsCategory" className="form-label">Category</label>
+                                        <select value={newsCategory} onChange={onchangeOfNewsCategory}
+                                                id='selectNewsCategory' className="form-select"
+                                                aria-label="selectNewsCategory">
+                                            {newsCategoryArr.map((option) => (
+                                                <option key={option.value}
+                                                        value={option.value}>{option.lable}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className="col-lg-6"></div>
                                 </div>
-                                <div className="col-lg-3">
-                                    <label htmlFor="selectNewsCategory" className="form-label">Category</label>
-                                    <select value={newsCategory} onChange={onchangeOfNewsCategory}
-                                            id='selectNewsCategory' className="form-select"
-                                            aria-label="selectNewsCategory">
-                                        {newsCategoryArr.map((option) => (
-                                            <option key={option.value}
-                                                    value={option.value}>{option.lable}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                                <div className="col-lg-6"></div>
                             </div>
                         </div>
                         <div className='mt-3 mb-5'>
@@ -199,7 +201,7 @@ export default function News(props) {
                                     </div>
                             </div>
 
-                            <nav aria-label="Page navigation example">
+                            <nav aria-label="Page navigation example mt-5">
                                 <div className="d-flex justify-content-between">
                                     <ul className="pagination justify-content-start">
                                         <li className="page-item"><span
