@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/rushidshinde/News-Hub/static/css/main.6d4c3708.css",
+    "main.js": "/rushidshinde/News-Hub/static/js/main.b02de9aa.js",
+    "static/js/787.81f9e02a.chunk.js": "/rushidshinde/News-Hub/static/js/787.81f9e02a.chunk.js",
+    "index.html": "/rushidshinde/News-Hub/index.html",
+    "main.6d4c3708.css.map": "/rushidshinde/News-Hub/static/css/main.6d4c3708.css.map",
+    "main.b02de9aa.js.map": "/rushidshinde/News-Hub/static/js/main.b02de9aa.js.map",
+    "787.81f9e02a.chunk.js.map": "/rushidshinde/News-Hub/static/js/787.81f9e02a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6d4c3708.css",
+    "static/js/main.b02de9aa.js"
+  ]
+}
